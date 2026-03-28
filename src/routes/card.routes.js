@@ -18,7 +18,7 @@ const searchCardsSchema = z.object({
     query: z.string().optional(),
     labelId: z.string().uuid('Invalid label ID filter').optional(),
     memberId: z.string().uuid('Invalid member ID filter').optional(),
-    dueDate: z.string().datetime({ message: 'Must be ISO 8601 date format' }).optional()
+    dueDate: z.string().optional()
   }),
   params: z.object({}),
   body: z.object({}),
@@ -29,7 +29,7 @@ const createCardSchema = z.object({
     listId: z.string().uuid('Invalid List ID format'),
     title: z.string().min(1, 'Card title cannot be empty'),
     description: z.string().optional(),
-    dueDate: z.string().datetime().optional(), // optionally handle dueDate setup
+    dueDate: z.string().optional(), // allow YYYY-MM-DD or ISO
     position: z.number({ required_error: 'Position is required for ordering' }),
   }),
   params: z.object({}),
@@ -40,12 +40,21 @@ const updateCardSchema = z.object({
   body: z.object({
     title: z.string().min(1).optional(),
     description: z.string().optional().nullable(),
+    dueDate: z.string().optional().nullable(),
     listId: z.string().uuid().optional(),
     position: z.number().optional(),
   }),
   params: z.object({
     id: z.string().uuid('Invalid Card ID format'),
   }),
+  query: z.object({}),
+});
+
+const archiveCardSchema = z.object({
+  params: z.object({
+    id: z.string().uuid('Invalid Card ID format'),
+  }),
+  body: z.object({}),
   query: z.object({}),
 });
 
@@ -130,6 +139,10 @@ router
   .route('/:id')
   .put(validateRequest(updateCardSchema), cardController.updateCard)
   .delete(validateRequest(deleteCardSchema), cardController.deleteCard);
+
+router
+  .route('/:id/archive')
+  .put(validateRequest(archiveCardSchema), cardController.archiveCard);
 
 router
   .route('/:id/labels')

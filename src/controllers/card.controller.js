@@ -42,9 +42,18 @@ exports.updateCard = async (req, res) => {
 exports.deleteCard = async (req, res) => {
   await cardService.deleteCard(req.params.id);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
     data: null,
+  });
+};
+
+exports.archiveCard = async (req, res) => {
+  const card = await cardService.archiveCard(req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    data: { card },
   });
 };
 
@@ -83,9 +92,9 @@ exports.removeLabel = async (req, res) => {
   const { id: cardId, labelId } = req.params;
   await cardService.removeLabel(cardId, labelId);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
+    message: 'Label removed successfully',
   });
 };
 
@@ -104,8 +113,8 @@ exports.removeMember = async (req, res) => {
   const { id: cardId, memberId } = req.params;
   await cardService.removeMember(cardId, memberId);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
+    message: 'Member removed successfully',
   });
 };

@@ -33,7 +33,7 @@ exports.updateList = async (req, res) => {
 exports.deleteList = async (req, res) => {
   await listService.deleteList(req.params.id);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
     data: null,
   });

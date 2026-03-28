@@ -20,7 +20,13 @@ class BoardService {
         lists: {
           include: { 
             cards: {
-              orderBy: { position: 'asc' }
+              orderBy: { position: 'asc' },
+              where: { isArchived: false },
+              include: {
+                labels: { include: { label: true } },
+                members: { include: { member: true } },
+                checklists: { include: { items: true } },
+              }
             } 
           },
           orderBy: { position: 'asc' }

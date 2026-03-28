@@ -8,7 +8,12 @@ class CardService {
     if (!list) throw new AppError('List not found', 404);
 
     return prisma.card.findMany({
-      where: { listId },
+      where: { listId, isArchived: false },
+      include: {
+        labels: { include: { label: true } },
+        members: { include: { member: true } },
+        checklists: { include: { items: true } }
+      },
       orderBy: { position: 'asc' },
     });
   }
@@ -28,18 +33,20 @@ class CardService {
     if (dueDate) {
       where.dueDate = { lte: new Date(dueDate) };
     }
+    where.isArchived = false;
 
     return prisma.card.findMany({
       where,
       include: {
         labels: { include: { label: true } },
-        members: { include: { member: true } }
+        members: { include: { member: true } },
+        checklists: { include: { items: true } }
       },
       orderBy: { position: 'asc' },
     });
   }
 
-  async createCard({ listId, title, description, position }) {
+  async createCard({ listId, title, description, dueDate, position }) {
     const list = await prisma.list.findUnique({ where: { id: listId } });
     if (!list) throw new AppError('List not found', 404);
 
@@ -47,6 +54,7 @@ class CardService {
       data: {
         title,
         description,
+        dueDate: (dueDate && dueDate.trim() !== "") ? new Date(dueDate) : null,
         position,
         listId,
       },
@@ -62,9 +70,16 @@ class CardService {
       if (!newList) throw new AppError('Target list not found', 404);
     }
 
+    const updateData = { ...data };
+    if (updateData.dueDate && updateData.dueDate.trim() !== "") {
+      updateData.dueDate = new Date(updateData.dueDate);
+    } else if (updateData.dueDate === null || updateData.dueDate === "") {
+      updateData.dueDate = null;
+    }
+
     return prisma.card.update({
       where: { id },
-      data,
+      data: updateData,
     });
   }
 
@@ -73,6 +88,16 @@ class CardService {
     if (!card) throw new AppError('Card not found', 404);
 
     await prisma.card.delete({ where: { id } });
+  }
+
+  async archiveCard(id) {
+    const card = await prisma.card.findUnique({ where: { id } });
+    if (!card) throw new AppError('Card not found', 404);
+
+    return prisma.card.update({
+      where: { id },
+      data: { isArchived: true },
+    });
   }
 
   async reorderCard(listId, sourceIndex, destinationIndex) {
@@ -163,15 +188,11 @@ class CardService {
   }
 
   async removeLabel(cardId, labelId) {
-    const cardLabel = await prisma.cardLabel.findUnique({
-      where: { cardId_labelId: { cardId, labelId } },
+    const { count } = await prisma.cardLabel.deleteMany({
+      where: { cardId, labelId },
     });
 
-    if (!cardLabel) throw new AppError('Label is not assigned to this card', 404);
-
-    await prisma.cardLabel.delete({
-      where: { cardId_labelId: { cardId, labelId } },
-    });
+    if (count === 0) throw new AppError('Label is not assigned to this card', 404);
   }
 
   async assignMember(cardId, memberId) {
@@ -189,15 +210,11 @@ class CardService {
   }
 
   async removeMember(cardId, memberId) {
-    const cardMember = await prisma.cardMember.findUnique({
-      where: { cardId_memberId: { cardId, memberId } },
+    const { count } = await prisma.cardMember.deleteMany({
+      where: { cardId, memberId },
     });
 
-    if (!cardMember) throw new AppError('Member is not assigned to this card', 404);
-
-    await prisma.cardMember.delete({
-      where: { cardId_memberId: { cardId, memberId } },
-    });
+    if (count === 0) throw new AppError('Member is not assigned to this card', 404);
   }
 }
 

@@ -36,7 +36,7 @@ exports.deleteItem = async (req, res) => {
   const { itemId } = req.params;
   await checklistService.deleteItem(itemId);
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
     data: null,
   });

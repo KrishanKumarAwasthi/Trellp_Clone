@@ -10,6 +10,8 @@ const boardRoutes = require('./routes/board.routes');
 const listRoutes = require('./routes/list.routes');
 const cardRoutes = require('./routes/card.routes');
 const checklistRoutes = require('./routes/checklist.routes');
+const labelRoutes = require('./routes/label.routes');
+const memberRoutes = require('./routes/member.routes');
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use('/api/v1/boards', boardRoutes);
 app.use('/api/v1/lists', listRoutes);
 app.use('/api/v1/cards', cardRoutes);
 app.use('/api/v1/checklists', checklistRoutes);
+app.use('/api/v1/labels', labelRoutes);
+app.use('/api/v1/members', memberRoutes);
 
 // Unhandled routes
 app.all('*', (req, res, next) => {
