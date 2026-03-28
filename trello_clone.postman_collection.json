@@ -1,0 +1,201 @@
+{
+  "info": {
+    "name": "Trello Clone Backend API v1",
+    "description": "Comprehensive Postman collection for testing the Kanban Express MVC backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1", "type": "string" },
+    { "key": "boardId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "listId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "cardId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "checklistId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "itemId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "labelId", "value": "REPLACE_WITH_UUID", "type": "string" },
+    { "key": "memberId", "value": "REPLACE_WITH_UUID", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. Boards",
+      "item": [
+        {
+          "name": "Get All Boards",
+          "request": { "method": "GET", "url": "{{baseUrl}}/boards" }
+        },
+        {
+          "name": "Get Specific Board",
+          "request": { "method": "GET", "url": "{{baseUrl}}/boards/{{boardId}}" }
+        },
+        {
+          "name": "Create Board",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/boards",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"title\": \"My New Project\"}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Lists",
+      "item": [
+        {
+          "name": "Get Lists by Board",
+          "request": { "method": "GET", "url": "{{baseUrl}}/lists?boardId={{boardId}}" }
+        },
+        {
+          "name": "Create List",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"boardId\":\"{{boardId}}\",\"title\":\"Backlog\",\"position\":1000}" }
+          }
+        },
+        {
+          "name": "Update List Title",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/lists/{{listId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"title\":\"Prioritized Backlog\"}" }
+          }
+        },
+        {
+          "name": "Reorder List",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/lists/reorder",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"boardId\":\"{{boardId}}\",\"sourceIndex\":0,\"destinationIndex\":1}" }
+          }
+        },
+        {
+          "name": "Delete List",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/lists/{{listId}}" }
+        }
+      ]
+    },
+    {
+      "name": "3. Cards",
+      "item": [
+        {
+          "name": "Search Cards globally",
+          "request": { "method": "GET", "url": "{{baseUrl}}/cards/search?query=mockup" }
+        },
+        {
+          "name": "Get Cards by List",
+          "request": { "method": "GET", "url": "{{baseUrl}}/cards?listId={{listId}}" }
+        },
+        {
+          "name": "Create Card",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cards",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"listId\":\"{{listId}}\",\"title\":\"Fix bug\",\"position\":1000}" }
+          }
+        },
+        {
+          "name": "Reorder Card (Same List)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cards/reorder",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"listId\":\"{{listId}}\",\"sourceIndex\":0,\"destinationIndex\":2}" }
+          }
+        },
+        {
+          "name": "Move Card (Across Lists)",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cards/move",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"cardId\":\"{{cardId}}\",\"sourceListId\":\"{{listId}}\",\"destinationListId\":\"REPLACE_WITH_UUID\",\"destinationIndex\":0}" }
+          }
+        },
+        {
+          "name": "Update Card Metadata",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/cards/{{cardId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"title\":\"Urgent Fix\",\"description\":\"More info\"}" }
+          }
+        },
+        {
+          "name": "Delete Card",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/cards/{{cardId}}" }
+        }
+      ]
+    },
+    {
+      "name": "4. Associations",
+      "item": [
+        {
+          "name": "Add Label to Card",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cards/{{cardId}}/labels",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"labelId\":\"{{labelId}}\"}" }
+          }
+        },
+        {
+          "name": "Remove Label from Card",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/cards/{{cardId}}/labels/{{labelId}}" }
+        },
+        {
+          "name": "Assign Member to Card",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/cards/{{cardId}}/members",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"memberId\":\"{{memberId}}\"}" }
+          }
+        },
+        {
+          "name": "Remove Member from Card",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/cards/{{cardId}}/members/{{memberId}}" }
+        }
+      ]
+    },
+    {
+      "name": "5. Checklists",
+      "item": [
+        {
+          "name": "Create Checklist",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/checklists",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"cardId\":\"{{cardId}}\"}" }
+          }
+        },
+        {
+          "name": "Add Checklist Item",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/checklists/{{checklistId}}/items",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"content\":\"Test coverage\"}" }
+          }
+        },
+        {
+          "name": "Toggle Item Completion",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/checklists/items/{{itemId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"completed\":true}" }
+          }
+        },
+        {
+          "name": "Delete Checklist Item",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/checklists/items/{{itemId}}" }
+        }
+      ]
+    }
+  ]
+}

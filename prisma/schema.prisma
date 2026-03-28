@@ -1,0 +1,114 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Board {
+  id        String   @id @default(uuid())
+  title     String
+  lists     List[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  position  Float
+  
+  boardId   String
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  
+  cards     Card[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Card {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  position    Float
+  dueDate     DateTime?
+  
+  listId      String
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
+  
+  labels      CardLabel[]
+  members     CardMember[]
+  checklists  Checklist[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Label {
+  id        String      @id @default(uuid())
+  name      String
+  color     String
+  
+  cards     CardLabel[]
+
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model CardLabel {
+  cardId    String
+  labelId   String
+  
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  label     Label    @relation(fields: [labelId], references: [id], onDelete: Cascade)
+
+  @@id([cardId, labelId])
+}
+
+model Member {
+  id        String       @id @default(uuid())
+  name      String
+  
+  cards     CardMember[]
+
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model CardMember {
+  cardId    String
+  memberId  String
+  
+  card      Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@id([cardId, memberId])
+}
+
+model Checklist {
+  id        String          @id @default(uuid())
+  
+  cardId    String
+  card      Card            @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  
+  items     ChecklistItem[]
+
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model ChecklistItem {
+  id          String    @id @default(uuid())
+  content     String
+  completed   Boolean   @default(false)
+  
+  checklistId String
+  checklist   Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
