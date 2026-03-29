@@ -24,6 +24,8 @@ A production-ready Kanban board application inspired by Trello, built with **Nex
 - **Responsive Design** — Fully optimized for mobile (375px+), tablet (768px+), and desktop (1024px+)
 - **Collapsible Sidebar** — Toggle board navigation with smooth animations
 - **Dark Theme** — Modern dark UI with glassmorphism effects
+- **Welcome Onboarding** — First-time users see a "Create Your First Board" screen instead of an empty state
+- **Error Handling** — Graceful connection error screen with retry button
 
 ---
 
@@ -219,8 +221,8 @@ The app will automatically load the first available board. If you ran the seed c
 | Layer | Platform | URL |
 |-------|----------|-----|
 | **Frontend** | Vercel | [trellp-clone.vercel.app](https://trellp-clone.vercel.app) |
-| **Backend API** | Render | Hosted on [Render](https://render.com) |
-| **Database** | Neon | Serverless PostgreSQL on [Neon](https://neon.tech) |
+| **Backend API** | Render | [trello-clone-api-pkkf.onrender.com](https://trello-clone-api-pkkf.onrender.com/api/v1) |
+| **Database** | Neon | Serverless PostgreSQL (ap-southeast-1) |
 
 ### Deploying Your Own Fork
 
