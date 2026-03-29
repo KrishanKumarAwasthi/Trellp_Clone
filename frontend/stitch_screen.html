@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Curator Board - Digital Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#001230",
+                        "inverse-on-surface": "#1d3052",
+                        "tertiary": "#f2c01f",
+                        "outline": "#988e99",
+                        "on-secondary": "#452059",
+                        "on-primary-container": "#f2f5ff",
+                        "primary-fixed": "#d6e3ff",
+                        "secondary": "#e4b5fa",
+                        "outline-variant": "#4c444e",
+                        "primary-fixed-dim": "#a8c8ff",
+                        "surface-tint": "#a8c8ff",
+                        "on-background": "#d7e2ff",
+                        "on-secondary-fixed": "#2e0743",
+                        "surface-variant": "#213557",
+                        "primary-container": "#186fcf",
+                        "on-primary-fixed-variant": "#00468a",
+                        "error": "#ffb4ab",
+                        "tertiary-container": "#d2a500",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#003062",
+                        "on-tertiary-fixed-variant": "#584400",
+                        "inverse-surface": "#d7e2ff",
+                        "on-tertiary": "#3d2e00",
+                        "on-secondary-fixed-variant": "#5d3772",
+                        "on-secondary-container": "#d2a4e8",
+                        "on-surface-variant": "#cec3cf",
+                        "secondary-fixed": "#f5d9ff",
+                        "secondary-fixed-dim": "#e4b5fa",
+                        "inverse-primary": "#005eb4",
+                        "surface-container-high": "#152a4b",
+                        "surface": "#001230",
+                        "on-tertiary-container": "#503d00",
+                        "surface-container-lowest": "#000d27",
+                        "on-primary-fixed": "#001b3c",
+                        "tertiary-fixed-dim": "#f2c01f",
+                        "on-tertiary-fixed": "#241a00",
+                        "primary": "#a8c8ff",
+                        "surface-container": "#091f41",
+                        "surface-dim": "#001230",
+                        "secondary-container": "#5d3772",
+                        "on-surface": "#d7e2ff",
+                        "surface-container-highest": "#213557",
+                        "surface-container-low": "#041b3c",
+                        "tertiary-fixed": "#ffdf91",
+                        "surface-bright": "#26395c"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-[#1d1b20] text-on-surface overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center w-full px-3 h-12 bg-[#1d1b20] border-b border-white/10 z-30">
+<div class="flex items-center gap-4 flex-1">
+<div class="flex items-center gap-1.5 cursor-pointer px-2 py-1 rounded hover:bg-white/10">
+<div class="w-5 h-5 bg-[#0079bf] rounded-sm flex flex-col items-center justify-center gap-0.5 p-0.5">
+<div class="flex gap-0.5 w-full h-full">
+<div class="w-1/2 bg-white rounded-[1px]"></div>
+<div class="w-1/2 bg-white rounded-[1px] opacity-50"></div>
+</div>
+</div>
+<span class="text-lg font-bold text-white tracking-tight">Trello</span>
+</div>
+<div class="relative ml-2 flex-1 max-w-2xl">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[#b6c2cf] text-sm">search</span>
+<input class="bg-[#22272b] border border-[#333c44] rounded-md py-1.5 pl-9 pr-4 text-sm focus:ring-1 focus:ring-primary text-white w-full" placeholder="Search" type="text"/>
+</div>
+<button class="px-3 py-1.5 text-sm font-medium bg-[#0c66e4] text-white rounded hover:bg-[#0055cc] transition-colors whitespace-nowrap ml-2">Create</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-[#b6c2cf] hover:bg-white/10 transition-colors rounded-full">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="p-2 text-[#b6c2cf] hover:bg-white/10 transition-colors rounded-full">
+<span class="material-symbols-outlined text-xl">help</span>
+</button>
+<button class="p-2 text-[#b6c2cf] hover:bg-white/10 transition-colors rounded-full">
+<span class="material-symbols-outlined text-xl">announcement</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar (Inbox) -->
+<aside class="w-[280px] bg-[#091e42]/90 border-r border-white/5 flex flex-col shrink-0">
+<div class="p-3">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-xl">inbox</span>
+<h2 class="text-base font-bold">Inbox</h2>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[#b6c2cf] text-lg cursor-pointer hover:bg-white/10 p-1 rounded">filter_list</span>
+<span class="material-symbols-outlined text-[#b6c2cf] text-lg cursor-pointer hover:bg-white/10 p-1 rounded">more_horiz</span>
+</div>
+</div>
+<div class="bg-white/5 hover:bg-white/10 transition-colors rounded-md p-2 mb-2 cursor-pointer border border-white/10">
+<span class="text-sm text-[#b6c2cf]">Add a card</span>
+</div>
+<div class="bg-white/5 hover:bg-white/10 transition-colors rounded-md p-2 cursor-pointer border border-white/10">
+<span class="text-sm text-[#b6c2cf]">Start using Trello</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-[#824b85] relative overflow-hidden flex flex-col items-center">
+<!-- Board Header -->
+<div class="h-12 w-full flex items-center justify-between px-4 bg-black/10 backdrop-blur-sm shrink-0">
+<div class="flex items-center gap-3">
+<h1 class="text-lg font-bold text-white">My Trello board</h1>
+<span class="material-symbols-outlined text-white text-base cursor-pointer">list_alt</span>
+<span class="material-symbols-outlined text-white text-base cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-1.5">
+<div class="w-6 h-6 rounded-full bg-slate-700 border-2 border-[#824b85] flex items-center justify-center text-[10px] text-white font-bold">KA</div>
+</div>
+<div class="h-6 w-[1px] bg-white/20 mx-1"></div>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">power</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">bolt</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">filter_list</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">star</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">groups</span>
+<button class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded text-sm font-medium flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-sm">person_add</span>
+<span>Share</span>
+</button>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:bg-white/10 rounded p-1">more_horiz</span>
+</div>
+</div>
+<!-- Board Container -->
+<div class="flex-1 p-3 flex items-start gap-3 overflow-x-auto custom-scrollbar">
+<!-- Guide Tab -->
+<div class="h-[calc(100vh-140px)] w-8 bg-[#5d3772] rounded-md flex flex-col items-center py-4 shrink-0 cursor-pointer">
+<span class="material-symbols-outlined text-white text-sm mb-4">swap_horiz</span>
+<p class="text-[10px] font-bold text-white uppercase tracking-widest vertical-text" style="writing-mode: vertical-rl; transform: rotate(180deg);">Trello Starter Guide</p>
+<span class="mt-auto text-[10px] font-bold text-white opacity-50">6</span>
+</div>
+<!-- Today Column -->
+<div class="w-64 bg-[#7a5c00] rounded-xl flex flex-col p-2 h-fit shrink-0">
+<div class="flex items-center justify-between p-2 mb-1">
+<h3 class="text-sm font-bold text-white">Today</h3>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white text-xs opacity-60">swap_horiz</span>
+<span class="material-symbols-outlined text-white text-sm cursor-pointer opacity-60">more_horiz</span>
+</div>
+</div>
+<button class="w-full text-left text-sm font-medium text-white/90 hover:bg-black/10 transition-colors p-2 rounded-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add a card</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-50">add_to_photos</span>
+</button>
+</div>
+<!-- This Week Column -->
+<div class="w-64 bg-[#1d5e35] rounded-xl flex flex-col p-2 h-fit shrink-0">
+<div class="flex items-center justify-between p-2 mb-1">
+<h3 class="text-sm font-bold text-white">This Week</h3>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white text-xs opacity-60">swap_horiz</span>
+<span class="material-symbols-outlined text-white text-sm cursor-pointer opacity-60">more_horiz</span>
+</div>
+</div>
+<button class="w-full text-left text-sm font-medium text-white/90 hover:bg-black/10 transition-colors p-2 rounded-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add a card</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-50">add_to_photos</span>
+</button>
+</div>
+<!-- Later Column -->
+<div class="w-64 bg-[#101204] rounded-xl flex flex-col p-2 h-fit shrink-0">
+<div class="flex items-center justify-between p-2 mb-1">
+<h3 class="text-sm font-bold text-white">Later</h3>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white text-xs opacity-60">swap_horiz</span>
+<span class="material-symbols-outlined text-white text-sm cursor-pointer opacity-60">more_horiz</span>
+</div>
+</div>
+<button class="w-full text-left text-sm font-medium text-white/90 hover:bg-black/10 transition-colors p-2 rounded-md flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add a card</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-50">add_to_photos</span>
+</button>
+</div>
+<!-- Add List Button -->
+<button class="w-64 shrink-0 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl flex items-center gap-3 px-4 text-white font-medium transition-all text-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+                    Add another list
+                </button>
+</div>
+<!-- Bottom Navigation Pod -->
+<div class="left-1/2 -translate-x-1/2 z-50 flex items-center bg-black/60 backdrop-blur-xl rounded-lg p-1 shadow-2xl mb-4">
+<button class="px-4 py-1.5 flex items-center gap-2 text-[#b6c2cf] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">inbox</span>
+<span class="text-xs font-medium">Inbox</span>
+</button>
+<button class="px-4 py-1.5 flex items-center gap-2 text-[#b6c2cf] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span class="text-xs font-medium">Planner</span>
+</button>
+<div class="h-6 w-[1px] bg-white/10 mx-1"></div>
+<button class="px-4 py-1.5 flex items-center gap-2 bg-[#0c66e4]/30 text-white rounded-md border-b-2 border-blue-500">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-xs font-bold">Board</span>
+</button>
+<button class="px-4 py-1.5 flex items-center gap-2 text-[#b6c2cf] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">view_sidebar</span>
+<span class="text-xs font-medium">Switch boards</span>
+</button>
+</div>
+</main>
+</div>
+</body></html>
