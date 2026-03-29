@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Dark Trello Theme Tokens */
+body {
+  background-color: #1D2125;
+  color: #B6C2CF;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Inter', sans-serif;
+  /* Prevent pull-to-refresh and overscroll bounce on mobile */
+  overscroll-behavior: none;
+  /* Safe area insets for notched devices */
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-left: env(safe-area-inset-left);
+}
+
+/* Scrollbar refinement for Dark Mode — desktop only */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1D2125;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2C333A;
+    border-radius: 6px;
+    border: 3px solid #1D2125;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #44546F;
+  }
+}
+
+/* Mobile: thin scrollbars */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+  }
+}
+
+h1, h2, h3, .font-headline {
+  font-family: 'Manrope', sans-serif;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-dragging {
+  opacity: 0.5;
+  transform: rotate(3deg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Card being actively dragged gets pulled above everything */
+.card-is-dragging {
+  position: relative !important;
+  z-index: 999 !important;
+  opacity: 0.7;
+  transform: rotate(2deg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+.drop-target {
+  border: 2px dashed rgba(168, 200, 255, 0.4);
+  border-radius: 0.5rem;
+}
+
+/* Each list should NOT create a stacking context by default */
+.kanban-list-container {
+  position: relative;
+  z-index: auto;
+  overflow: visible;
+}
+
+.card-item {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.material-symbols-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.board-lists-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  /* Momentum scrolling on iOS */
+  scroll-snap-type: x proximity;
+}
+
+/* On mobile, remove mandatory snap for smoother horizontal scroll */
+@media (max-width: 639px) {
+  .board-lists-scroll {
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 0.5rem;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  button, [role="button"] {
+    min-height: 36px;
+    min-width: 36px;
+  }
+}
+
+/* Safe area padding for bottom nav on notched devices */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
