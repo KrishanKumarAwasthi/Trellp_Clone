@@ -1,0 +1,59 @@
+
+> trello-clone-backend@1.0.0 dev
+> nodemon src/server.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node src/server.js`[39m
+💥 Failed to start server: Can't reach database server at `q9wijxue.ap-southeast.database.insforge.app:5432`
+
+Please make sure your database server is running at `q9wijxue.ap-southeast.database.insforge.app:5432`.
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+💥 Failed to start server: Can't reach database server at `q9wijxue.ap-southeast.database.insforge.app:5432`
+
+Please make sure your database server is running at `q9wijxue.ap-southeast.database.insforge.app:5432`.
+[32m[nodemon] starting `node src/server.js`[39m
+💥 Failed to start server: Server has closed the connection.
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node src/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+💥 Failed to start server: Can't reach database server at `q9wijxue.ap-southeast.database.insforge.app:5432`
+
+Please make sure your database server is running at `q9wijxue.ap-southeast.database.insforge.app:5432`.
+[32m[nodemon] starting `node src/server.js`[39m
+💥 Failed to start server: Can't reach database server at `q9wijxue.ap-southeast.database.insforge.app:5432`
+
+Please make sure your database server is running at `q9wijxue.ap-southeast.database.insforge.app:5432`.
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `node src/server.js`[39m
+📦 Successfully connected to the database via Prisma ORM
+🚀 Server running in development mode on port 3001
+^C^C
