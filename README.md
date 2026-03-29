@@ -50,7 +50,8 @@ A production-ready Kanban board application inspired by Trello, built with **Nex
 ### Infrastructure
 | Service | Purpose |
 |---------|---------|
-| **InsForge** | PostgreSQL hosting (BaaS) |
+| **Neon** | Serverless PostgreSQL hosting |
+| **Render** | Backend API deployment |
 | **Vercel** | Frontend deployment |
 
 ---
@@ -114,7 +115,7 @@ Follow these steps to run the full application on your machine.
 - **npm** ≥ 9.x (comes with Node.js)
 - **PostgreSQL** database — you can use:
   - A local PostgreSQL installation
-  - A free hosted DB from [InsForge](https://insforge.app), [Supabase](https://supabase.com), [Neon](https://neon.tech), or [ElephantSQL](https://elephantsql.com)
+  - A free hosted DB from [Neon](https://neon.tech), [Supabase](https://supabase.com), or [ElephantSQL](https://elephantsql.com)
 
 ---
 
@@ -141,7 +142,7 @@ DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@YOUR_HOST:5432/YOUR_DB_NAME?s
 PORT=3001
 ```
 
-> ⚠️ Replace the `DATABASE_URL` with your actual PostgreSQL connection string.
+> ⚠️ Replace the `DATABASE_URL` with your actual PostgreSQL connection string. If using [Neon](https://neon.tech), copy the connection string from your Neon dashboard.
 
 ```bash
 # Push the database schema to your PostgreSQL instance
@@ -218,22 +219,30 @@ The app will automatically load the first available board. If you ran the seed c
 | Layer | Platform | URL |
 |-------|----------|-----|
 | **Frontend** | Vercel | [trellp-clone.vercel.app](https://trellp-clone.vercel.app) |
-| **Backend API** | InsForge | [q9wijxue.insforge.site/api/v1](https://q9wijxue.insforge.site/api/v1) |
-| **Database** | InsForge PostgreSQL | Hosted (ap-southeast) |
+| **Backend API** | Render | Hosted on [Render](https://render.com) |
+| **Database** | Neon | Serverless PostgreSQL on [Neon](https://neon.tech) |
 
 ### Deploying Your Own Fork
 
 If you fork this repo and want to deploy your own instance:
 
-**Backend** — Deploy on any Node.js hosting (Render, Railway, Fly.io) or InsForge:
-1. Set the `DATABASE_URL` and `PORT` environment variables
-2. Run `npx prisma generate && npm start`
+**Backend** — Deploy on [Render](https://render.com):
+1. Create a new **Web Service** on Render
+2. Connect your GitHub repo
+3. Set **Build Command** → `npm install && npx prisma generate`
+4. Set **Start Command** → `npm start`
+5. Add environment variables: `DATABASE_URL` and `PORT`
 
-**Frontend** — Deploy on Vercel:
+**Database** — Set up on [Neon](https://neon.tech):
+1. Create a free Neon project
+2. Copy the PostgreSQL connection string from your dashboard
+3. Use it as the `DATABASE_URL` in your backend environment
+
+**Frontend** — Deploy on [Vercel](https://vercel.com):
 1. Import the repo on [vercel.com/new](https://vercel.com/new)
 2. Set **Root Directory** → `frontend`
 3. Add environment variable:
-   - `NEXT_PUBLIC_API_URL` = `https://your-backend-url.com/api/v1`
+   - `NEXT_PUBLIC_API_URL` = `https://your-render-backend-url.onrender.com/api/v1`
 4. Deploy
 
 ---
@@ -336,7 +345,7 @@ Board (1) ──→ (N) List (1) ──→ (N) Card
 
 5. **CORS Open** — The backend allows all origins (`cors()` with no restrictions). For production, this should be restricted to the frontend domain only.
 
-6. **No Real-Time Sync** — Changes are not pushed to other clients in real time. Each client fetches fresh data on page load. WebSocket support (e.g., via InsForge Realtime) could be added.
+6. **No Real-Time Sync** — Changes are not pushed to other clients in real time. Each client fetches fresh data on page load. WebSocket support could be added for real-time collaboration.
 
 7. **PostgreSQL Required** — The app requires PostgreSQL specifically (not MySQL/SQLite) due to Prisma's PostgreSQL-specific features used in the schema.
 
