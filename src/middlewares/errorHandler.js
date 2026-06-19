@@ -7,6 +7,7 @@ exports.globalErrorHandler = (err, req, res, next) => {
 
   // Handle Zod Validation Errors
   if (err instanceof ZodError) {
+    // Join all zod errors
     const errorMessages = err.errors.map(el => el.message).join('. ');
     return res.status(400).json({
       status: 'fail',

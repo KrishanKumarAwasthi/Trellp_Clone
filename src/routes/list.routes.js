@@ -56,7 +56,7 @@ router
   .get(validateRequest(getListsSchema), listController.getLists)
   .post(validateRequest(createListSchema), listController.createList);
 
-// IMPORTANT: Fixed route mappings without variable IDs must come first!
+
 router
   .route('/reorder')
   .put(validateRequest(reorderListSchema), listController.reorderList);

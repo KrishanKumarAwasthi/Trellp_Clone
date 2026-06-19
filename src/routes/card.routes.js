@@ -7,6 +7,7 @@ const router = express.Router();
 
 const getCardsSchema = z.object({
   query: z.object({
+    // universally unique id's
     listId: z.string().uuid('Invalid List ID format'),
   }),
   params: z.object({}),

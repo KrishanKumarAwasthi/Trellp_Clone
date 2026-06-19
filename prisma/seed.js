@@ -42,7 +42,7 @@ async function main() {
                 },
                 {
                   title: 'Setup Database',
-                  description: 'Provision InsForge PostgreSQL and Prisma schema.',
+                  description: 'Provision Neon PostgreSQL and Prisma schema.',
                   position: 2000,
                   dueDate: new Date(),
                   labels: { create: [{ labelId: labelUrgent.id }] },

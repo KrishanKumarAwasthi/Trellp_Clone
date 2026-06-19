@@ -25,12 +25,14 @@ class CardService {
       where.title = { contains: query, mode: 'insensitive' };
     }
     if (labelId) {
+      // Some labelId matches
       where.labels = { some: { labelId } };
     }
     if (memberId) {
       where.members = { some: { memberId } };
     }
     if (dueDate) {
+      // Less than equal to
       where.dueDate = { lte: new Date(dueDate) };
     }
     where.isArchived = false;
@@ -64,13 +66,14 @@ class CardService {
   async updateCard(id, data) {
     const card = await prisma.card.findUnique({ where: { id } });
     if (!card) throw new AppError('Card not found', 404);
-
+    //  if user moving move card to another list
     if (data.listId && data.listId !== card.listId) {
       const newList = await prisma.list.findUnique({ where: { id: data.listId } });
       if (!newList) throw new AppError('Target list not found', 404);
     }
-
+    // Handle due date conversion and convert date to obj
     const updateData = { ...data };
+    // spred op
     if (updateData.dueDate && updateData.dueDate.trim() !== "") {
       updateData.dueDate = new Date(updateData.dueDate);
     } else if (updateData.dueDate === null || updateData.dueDate === "") {
@@ -104,6 +107,7 @@ class CardService {
     if (sourceIndex === destinationIndex) return;
 
     const cards = await prisma.card.findMany({
+      // got array
       where: { listId },
       orderBy: { position: 'asc' },
     });
@@ -113,14 +117,16 @@ class CardService {
     if (destinationIndex < 0 || destinationIndex >= cards.length) throw new AppError('Invalid destination index', 400);
 
     const draggedCard = cards[sourceIndex];
-    
+    // Go to index, delete no of elm, insert x and modify arry
     cards.splice(sourceIndex, 1);
     cards.splice(destinationIndex, 0, draggedCard);
 
     let newPosition;
     if (destinationIndex === 0) {
+      // start
       newPosition = cards[1] ? cards[1].position / 2 : 1000;
     } else if (destinationIndex === cards.length - 1) {
+      // end
       newPosition = cards[cards.length - 2].position + 1000;
     } else {
       const prevPosition = cards[destinationIndex - 1].position;

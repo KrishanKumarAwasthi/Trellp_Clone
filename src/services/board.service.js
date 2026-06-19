@@ -44,5 +44,14 @@ class BoardService {
     });
   }
 }
+async UpdateBoardById(id,new_title) {
+    const board = await prisma.board.findUnique({
+      where: { id },
+         date : {new_title}
+        }
+      }
+     if (!board) throw new AppError('Board not found', 404);
+    return board;
+});
 
 module.exports = new BoardService();

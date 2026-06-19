@@ -1,6 +1,8 @@
 const validateRequest = (schema) => {
   return (req, res, next) => {
     schema.parse({
+      // If data parsed->return 
+      // If something invalid->throw error
       body: req.body,
       query: req.query,
       params: req.params

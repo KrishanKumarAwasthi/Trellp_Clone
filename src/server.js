@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 const startServer = async () => {
   try {
-    // Attempt to connect to InsForge PostgreSQL to verify connection
+    
     await prisma.$connect();
     console.log('📦 Successfully connected to the database via Prisma ORM');
 
