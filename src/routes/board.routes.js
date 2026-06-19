@@ -15,7 +15,7 @@ const createBoardSchema = z.object({
   params: z.object({}),
   query: z.object({})
 });
-const UpdateBord = z.object({
+const UpdateBoard = z.object({
   body: z.object({
       title : z.string().min(1,'User should give some name')
 
