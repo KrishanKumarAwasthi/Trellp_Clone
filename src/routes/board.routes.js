@@ -33,7 +33,7 @@ router
 
 router
   .route('/:id')
-  .get(boardController.getBoard);
+  .get(boardController.getBoard)
   .post( validateRequest(UpdateBoard),boardController.UpdateName);
 
 module.exports = router;
