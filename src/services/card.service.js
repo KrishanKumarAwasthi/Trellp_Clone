@@ -108,6 +108,7 @@ class CardService {
 
     const cards = await prisma.card.findMany({
       // got array
+      // Done
       where: { listId },
       orderBy: { position: 'asc' },
     });
