@@ -9,16 +9,14 @@ exports.getAllBoards = async (req, res) => {
     data: { boards }
   });
 };
-const UpdateBoard = async(req,res)=>{
-  const boards = await boardService.getBoardById(req.params.id);
-  
+exports.UpdateName = async (req, res) => {
+  const board = await boardService.UpdateBoardById(req.params.id, req.body.title);
 
   res.status(200).json({
-    status : 'succes',
-    data:{baord}
-  })
-
-}
+    status: 'success',
+    data: { board }
+  });
+};
 
 exports.getBoard = async (req, res) => {
   const board = await boardService.getBoardById(req.params.id);
