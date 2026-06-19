@@ -18,7 +18,7 @@ class BoardService {
       where: { id },
       include: {
         lists: {
-          include: { 
+          include: {
             cards: {
               orderBy: { position: 'asc' },
               where: { isArchived: false },
@@ -27,13 +27,13 @@ class BoardService {
                 members: { include: { member: true } },
                 checklists: { include: { items: true } },
               }
-            } 
+            }
           },
           orderBy: { position: 'asc' }
         }
       }
     });
-    
+
     if (!board) throw new AppError('Board not found', 404);
     return board;
   }
@@ -43,15 +43,19 @@ class BoardService {
       data: { title }
     });
   }
-}
-async UpdateBoardById(id,new_title) {
-    const board = await prisma.board.findUnique({
+
+  // ✅ FIXED FUNCTION
+  async UpdateBoardById(id, new_title) {
+    const board = await prisma.board.update({
       where: { id },
-         date : {new_title}
-        }
+      data: {
+        title: new_title
       }
-     if (!board) throw new AppError('Board not found', 404);
+    });
+
+    if (!board) throw new AppError('Board not found', 404);
     return board;
-});
+  }
+}
 
 module.exports = new BoardService();
