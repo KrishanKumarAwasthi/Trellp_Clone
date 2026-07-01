@@ -1,8 +1,8 @@
-# 📋 Trello Clone — Full-Stack Kanban Board
+# ⚡ Sprintly — Full-Stack Kanban Board
 
-A production-ready Kanban board application inspired by Trello, built with **Next.js** (frontend) and **Express + Prisma** (backend). Features drag-and-drop cards, multi-board support, labels, checklists, and a fully responsive design across mobile, tablet, and desktop.
+A production-ready Kanban board application built with **Next.js** (frontend) and **Express + Prisma** (backend). Features drag-and-drop cards, multi-board support, labels, checklists, and a fully responsive design across mobile, tablet, and desktop.
 
-### 🔗 [Live Demo → trellp-clone.vercel.app](https://trellp-clone.vercel.app)
+### 🔗 [Live Demo → sprintly-new-gen.vercel.app](https://sprintly-new-gen.vercel.app)
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js)
 ![Express](https://img.shields.io/badge/Express-4.19-000?logo=express)
@@ -61,7 +61,7 @@ A production-ready Kanban board application inspired by Trello, built with **Nex
 ## 📁 Project Structure
 
 ```
-trello-clone/
+sprintly/
 ├── frontend/                   # Next.js frontend application
 │   ├── app/
 │   │   ├── board/[id]/page.js  # Dynamic board view (Kanban)
@@ -220,7 +220,7 @@ The app will automatically load the first available board. If you ran the seed c
 
 | Layer | Platform | URL |
 |-------|----------|-----|
-| **Frontend** | Vercel | [trellp-clone.vercel.app](https://trellp-clone.vercel.app) |
+| **Frontend** | Vercel | [sprintly-new-gen.vercel.app](https://sprintly-new-gen.vercel.app) |
 | **Backend API** | Render | [trello-clone-api-pkkf.onrender.com](https://trello-clone-api-pkkf.onrender.com/api/v1) |
 | **Database** | Neon | Serverless PostgreSQL (ap-southeast-1) |
 
@@ -359,7 +359,7 @@ Board (1) ──→ (N) List (1) ──→ (N) Card
 
 ```bash
 # Backend API tests (via Postman collection)
-# Import trello_clone.postman_collection.json into Postman
+# Import sprintly.postman_collection.json into Postman
 
 # Or use the REST client file
 # Open rest_tests.http in VS Code with REST Client extension
