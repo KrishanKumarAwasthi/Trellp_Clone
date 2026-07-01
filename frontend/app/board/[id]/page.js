@@ -642,7 +642,7 @@ export default function BoardPage() {
           onToggleDesktopCollapse={() => setIsSidebarCollapsed(prev => !prev)}
         />
         <main className="flex-1 min-w-0 relative overflow-hidden flex flex-col">
-          {/* Deep Dark Trello Background */}
+          {/* Deep Dark Sprintly Background */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Dark Charcoal Navy Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#8B4A7A] via-[#A35B8E] to-[#7A3D6E]"></div>

@@ -29,7 +29,7 @@ export default function KanbanCard({
 }) {
   const [isCreatingLabel, setIsCreatingLabel] = useState(false);
   const [newLabelName, setNewLabelName] = useState("");
-  const [newLabelColor, setNewLabelColor] = useState("#0079bf"); // Trello Blue
+  const [newLabelColor, setNewLabelColor] = useState("#0079bf"); // Sprintly Blue
   const [isCreatingMember, setIsCreatingMember] = useState(false);
   const [newMemberName, setNewMemberName] = useState("");
   const [newItemContent, setNewItemContent] = useState("");

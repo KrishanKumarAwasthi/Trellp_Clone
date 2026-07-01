@@ -30,13 +30,12 @@ export default function Header({ boardTitle, onSearch, onCreateBoard, onToggleSi
 
         {/* Logo */}
         <div className="flex items-center gap-1.5 cursor-pointer px-1 sm:px-2 py-1 rounded-lg hover:bg-white/5 group shrink-0">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#0079bf] rounded-sm flex flex-col items-center justify-center gap-0.5 p-0.5 shadow-sm group-hover:bg-[#0055CC] transition-colors">
-            <div className="flex gap-0.5 w-full h-full">
-               <div className="w-1/2 bg-white rounded-[1px]"></div>
-               <div className="w-1/2 bg-white rounded-[1px] opacity-50"></div>
-            </div>
+          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-[#7C3AED] to-[#2563EB] rounded-md flex items-center justify-center shadow-sm group-hover:from-[#6D28D9] group-hover:to-[#1D4ED8] transition-all">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L4.09 12.11C3.68 12.59 3.88 13.33 4.46 13.55L10.5 16L11 22L19.91 11.89C20.32 11.41 20.12 10.67 19.54 10.45L13.5 8L13 2Z" fill="white" />
+            </svg>
           </div>
-          <span className="hidden sm:inline text-base md:text-lg font-bold text-[#FFFFFF] tracking-tight">Trello</span>
+          <span className="hidden sm:inline text-base md:text-lg font-bold text-[#FFFFFF] tracking-tight">Sprintly</span>
         </div>
 
         {/* Search — desktop/tablet inline, mobile expandable */}

@@ -49,7 +49,7 @@ export default function Home() {
       <div className="h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-on-surface-variant text-sm">Initializing Curator Board...</span>
+          <span className="text-on-surface-variant text-sm">Initializing Sprintly...</span>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ export default function Home() {
             </svg>
           </div>
           <div>
-            <h2 className="text-on-surface text-xl font-bold mb-1">Welcome to Curator Board</h2>
+            <h2 className="text-on-surface text-xl font-bold mb-1">Welcome to Sprintly</h2>
             <p className="text-on-surface-variant text-sm">Get started by creating your first Kanban board.</p>
           </div>
           <button

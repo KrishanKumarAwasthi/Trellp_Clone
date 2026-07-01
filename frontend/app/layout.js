@@ -1,15 +1,16 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Curator Board - Trello Clone",
-  description: "A premium Kanban board built with Next.js and the Digital Curator design system",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-    viewportFit: "cover",
-  },
+  title: "Sprintly — Kanban Board",
+  description: "A premium Kanban board built with Next.js by Sprintly",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }) {

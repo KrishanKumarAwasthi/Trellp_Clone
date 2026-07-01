@@ -26,7 +26,7 @@ export default function BoardHeader({ title, allLabels = [], allMembers = [], fi
     <div className="w-full flex items-center justify-between px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-[#1D2125]/60 backdrop-blur-md shrink-0 border-b border-white/5 relative z-30 shadow-md transition-all duration-300 gap-1.5 sm:gap-2">
       <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1">
         <h1 className="text-sm sm:text-base md:text-lg font-bold text-[#FFFFFF] truncate max-w-[40vw] sm:max-w-[50vw] md:max-w-none">
-          {title || "My Trello board"}
+          {title || "My Sprintly board"}
         </h1>
         <div className="hidden sm:flex items-center gap-1 cursor-pointer hover:bg-white/10 px-2 py-1 rounded transition-colors group">
           <span className="material-symbols-outlined text-[#B6C2CF] text-lg group-hover:scale-110 transition-transform">star</span>
